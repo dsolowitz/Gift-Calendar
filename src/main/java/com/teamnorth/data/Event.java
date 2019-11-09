@@ -1,35 +1,45 @@
+package com.teamnorth.data;
+
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "EVENT")
+public class Event {
 
-public class Events {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-
-    private Long id;
-
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
-    private LocalDateTime start;
-    private LocalDateTime finish;
+    @Column(name = "start")
+    private String start;
+    @Column(name = "end")
+    private String end;
 
-    public Events(Long id, String title, String description, LocalDateTime start, LocalDateTime finish) {
+    public Event(int id, String title, String description, String start, String end) {
         super();
         this.id = id;
         this.title = title;
         this.description = description;
         this.start = start;
-        this.finish = finish;
+        this.end = end;
     }
 
-    public Events() {
+    public Event() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -49,25 +59,26 @@ public class Events {
         this.description = description;
     }
 
-    public LocalDateTime getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public LocalDateTime getFinish() {
-        return finish;
+    public String getFinish() {
+        return end;
     }
 
-    public void setFinish(LocalDateTime finish) {
-        this.finish = finish;
+    public void setFinish(String end) {
+        this.end = end;
     }
+
 
     @Override
     public String toString() {
         return "Event [id=" + id + ", title=" + title + ", description=" + description + ", start=" + start
-                + ", finish=" + finish + "]";
+                + ", end=" + end + "]";
     }
 }

@@ -1,7 +1,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Questionaire</title>
+      <script src="/webjars/jquery/3.4.1/jquery.js" type="text/javascript"></script>
+
+      <title>Questionaire</title>
         <link rel="stylesheet" href="/css/nav.css">
     </head>
 <body>
@@ -12,7 +14,9 @@
     <li><a href="#">About us</a></li>
 </ul>
      <div class="question">
-    <h2>What is your gender?</h2>
+    <h2>What is this persons name?</h2>
+    <label><input type="text" id="userName"></label><br />
+    <h2>What is this persons gender?</h2>
     <label><input type="radio" class="form_radio" name="q0" value="a1">
         man
     </label><br />
@@ -180,8 +184,21 @@
       </label><br />
       <label><input type="radio" name="q9" value="c2">
         Non-customized
-      </label><br /> 
-      <button type="submit" id="submit" onclick="tabulateAnswers()">Submit Your Answers</button>
+      </label><br />
+      <h2>How many days in advance would you like to be reminded?</h2>
+       <select name="age" id="selectAge"></select>
+
+       <script>
+         var selectAge = document.getElementById("selectAge");
+         var contents;
+
+         for (let i = 1; i <= 100; i++) {
+           contents += "<option>" + i + "</option>";
+         }
+
+         selectAge.innerHTML = contents;
+      </script>
+       <button type="submit" id="submit" onclick="tabulateAnswers()">Submit Your Answers</button>
     
     </div>
 </body>

@@ -5,7 +5,6 @@
 
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="/css/nav.css">
 
     <link href='/webjars/fullcalendar/4.3.1/core/main.css' rel='stylesheet'/>
     <link href="/webjars/fullcalendar/4.3.1/daygrid/main.css" rel="stylesheet"/>
@@ -28,19 +27,47 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['dayGrid', 'timeGrid', 'list', 'interaction'],
-
+                navLinks: true,
                 selectable: true,
                 selectHelper: true,
-                editable: true,
+                editable: false,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay, listWeek'
-                },
-                dateClick: function () {
-                    alert('Create Event');
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay, listWeek',
                 },
 
+                dateClick: function (info, allDay, jsEvent, view) {
+
+                    var abc = prompt('Enter Title');
+                    var newEvent = {
+                        "title": abc,
+                        "start": info.dateStr,
+                        allDay : true,
+                     }
+
+                    calendar.addEvent(newEvent)
+                    $.ajax({
+                        url: "/event",
+                        data: JSON.stringify(newEvent),
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(json) {
+                            console.log("success")
+                            alert('Added Succesfully')
+                        }
+                    })
+                },
+
+
+                events: {
+                    url: '/allevents',
+                    type: 'GET',
+                    error: function () {
+                        alert('there was an error while fetching events!');
+                    },
+                },
                     height: "auto",
                 });
             calendar.render();
