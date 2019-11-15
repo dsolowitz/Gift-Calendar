@@ -1,136 +1,167 @@
 package com.teamnorth.data;
+
 import javax.persistence.*;
-public class Questionnaire{
 
-private Questionnaire() {}
+@Entity
+@Table(name = "QUESTIONNAIRE")
+public class Questionnaire {
 
-public Questionnaire(Long id, String gender, String age, String hobbies, String motivation,
-        String pricing, String category, String holiday,String webPreference, String customized) {
-        super();
-        this.id = id;
-        this.gender = gender;
-        this.age = age;
-        this.hobbies = hobbies;
-        this.motivation = motivation;
-        this.pricing = pricing;
-        this.category = category;
-        this.holiday = holiday;
-        this.webPreference = webPreference;
-        this.customized = customized;
-        }
+	@SuppressWarnings("unused")
+	private Questionnaire() {
+	}
 
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Long id;
+	public Questionnaire(Long id, String name, String gender, String age, String hobbies, String motivation, String pricing,
+			String category, String holiday, String webPreference, String customized, int daysInAdvance) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.hobbies = hobbies;
+		this.motivation = motivation;
+		this.pricing = pricing;
+		this.category = category;
+		this.holiday = holiday;
+		this.webPreference = webPreference;
+		this.customized = customized;
+		this.daysInAdvance = daysInAdvance;
+	}
 
-@OneToOne
-@JoinColumn(name="users")
-private User user;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
 
-@Column
-private String gender;
+//	@OneToOne
+//	@JoinColumn(name = "users")
+//	private User user;
+	
+	@Column
+	private String name;
 
-@Column
-private String age;
+	@Column
+	private String gender;
 
-@Column
-private String hobbies;
+	@Column
+	private String age;
 
-@Column
-private String motivation;
+	@Column
+	private String hobbies;
 
-@Column
-private String pricing;
+	@Column
+	private String motivation;
 
-@Column
-private String category;
+	@Column
+	private String pricing;
 
-@Column
-private String holiday;
+	@Column
+	private String category;
 
-@Column
-private String webPreference;
+	@Column
+	private String holiday;
 
-@Column
-private String customized;
+	@Column
+	private String webPreference;
 
-public Long getId() {
-        return id;
-        }
+	@Column
+	private String customized;
+	
+	@Column
+	private int daysInAdvance;
 
-public void setId(Long id) {
-        this.id = id;
-        }
+	public Long getId() {
+		return id;
+	}
 
-public String getGender() {
-        return gender;
-        }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public void setGender(String gender) {
-        this.gender = gender;
-        }
+	public String getGender() {
+		return gender;
+	}
 
-public String getAge() {
-        return age;
-        }
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
-public void setAge(String age) {
-        this.age = age;
-        }
+	public String getAge() {
+		return age;
+	}
 
-public String getHobbies() {
-        return hobbies;
-        }
+	public void setAge(String age) {
+		this.age = age;
+	}
 
-public void setHobbies(String hobbies) {
-        this.hobbies = hobbies;
-        }
+	public String getHobbies() {
+		return hobbies;
+	}
 
-public String getMotivation() {
-        return motivation;
-        }
+	public void setHobbies(String hobbies) {
+		this.hobbies = hobbies;
+	}
 
-public void setMotivation(String motivation) {
-        this.motivation = motivation;
-        }
+	public String getMotivation() {
+		return motivation;
+	}
 
-public String getPricing() {
-        return pricing;
-        }
+	public void setMotivation(String motivation) {
+		this.motivation = motivation;
+	}
 
-public void setPricing(String pricing) {
-        this.pricing = pricing;
-        }
+	public String getPricing() {
+		return pricing;
+	}
 
-public String getCategory() {
-        return category;
-        }
+	public void setPricing(String pricing) {
+		this.pricing = pricing;
+	}
 
-public void setCategory(String category) {
-        this.category = category;
-        }
+	public String getCategory() {
+		return category;
+	}
 
-public String getHoliday() {
-        return holiday;
-        }
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
-public void setHoliday(String holiday) {
-        this.holiday = holiday;
-        }
+	public String getHoliday() {
+		return holiday;
+	}
 
-public String getWebPreference() {
-        return webPreference;
-        }
+	public void setHoliday(String holiday) {
+		this.holiday = holiday;
+	}
 
-public void setWebPreference(String webPreference) {
-        this.webPreference = webPreference;
-        }
+	public String getWebPreference() {
+		return webPreference;
+	}
 
-public String getCustomized() {
-        return customized;
-        }
+	public void setWebPreference(String webPreference) {
+		this.webPreference = webPreference;
+	}
 
-public void setCustomized(String customized) {
-        this.customized = customized;
-        }
-        }
+	public String getCustomized() {
+		return customized;
+	}
+
+	public void setCustomized(String customized) {
+		this.customized = customized;
+	}
+	
+	public int getDaysInAdvance() {
+		return this.daysInAdvance;
+	}
+	
+	public void setDaysInAdvance(int daysInAdvance) {
+		this.daysInAdvance = daysInAdvance;
+	}
+	
+	@Override
+	public String toString() {
+		return "Questionnaire [id=" + id + ", gender=" + gender + ", age=" + age + ", hobbies="
+				+ hobbies + ", motivation=" + motivation + ", pricing=" + pricing + ", category=" + category
+				+ ", holiday=" + holiday + ", webPreference=" + webPreference + ", customized=" + customized + "]";
+	}
+
+}

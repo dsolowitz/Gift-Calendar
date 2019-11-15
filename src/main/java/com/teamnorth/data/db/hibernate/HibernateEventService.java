@@ -67,7 +67,7 @@ public class HibernateEventService  {
 
 
 	public void delete(Event event) {
-
+		
 	}
 
 
