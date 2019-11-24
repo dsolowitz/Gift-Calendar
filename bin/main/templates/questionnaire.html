@@ -10,116 +10,125 @@
 	<!-- Navigation Element -->
 	<ul class='nav'>
 		<li><a href="/">Home</a></li>
-		<li><a class="on" href="questionnaire">Questionnaire</a></li>
-		<li><a href="calendar">Calendar</a></li>
-		<li><a href="contact">Contact us</a></li>
-		<li><a href="about">About us</a></li>
+		<li><a class="on" href="/templates/questionnaire.html">Questionnaire</a></li>
+		<li><a href="/templates/calendar.html">Calendar</a></li>
+		<li><a href="/templates/contact.html">Contact us</a></li>
+		<li><a href="/templates/about.html">About us</a></li>
 	</ul>
 	<!-- Navigation Element End -->
 	<!-- BTW These questions should probably be more oriented towards the person they're buying gifts for, but that's not important right now since we
 	don't have that portion of the code fully functioning yet. -->
+
 	<div class="question">
-		<h2>What is this persons name?</h2>
-		<label><input type="text" id="userName"></label><br />
+		<form action="/templates/questionnaire.html" method="POST">
+			<h2>What is this persons name?</h2>
+			<label><input type="text" name="name"></label><br />
 
-		<h2>What is this persons gender?</h2>
-		<label><input type="radio" class="form_radio" name="q0"
-			value="a1"> Man </label><br /> <label><input type="radio"
-			class="form_radio" name="q0" value="a2"> Woman </label><br /> <label><input
-			type="radio" class="form_radio" name="q0" value="a3"> Other </label><br />
+			<h2>What is this persons gender?</h2>
+			<label><input type="radio" class="form_radio" name="gender"
+				value="Male" checked> Male </label><br /> <label><input type="radio"
+				class="form_radio" name="gender" value="Female"> Female </label><br /> <label><input
+				type="radio" class="form_radio" name="gender" value="Other"> Other
+			</label><br />
 
-		<h2>How old is this person?</h2>
-		<label><input type="radio" class="form_radio" name="q1"
-			value="b1"> 16-29 </label><br /> <label><input type="radio"
-			class="form_radio" name="q1" value="b2"> 30-59 </label><br /> <label><input
-			type="radio" class="form_radio" name="q1" value="b3"> 60-79 </label><br />
-		<label><input type="radio" class="form_radio" name="q1"
-			value="b4"> 80-89 </label><br />
+			<h2>How old is this person?</h2>
+				<label><input type="radio" class="form_radio" name="age"
+				value="15 and Under" checked> 15 and Under </label><br />
+				<label><input type="radio" class="form_radio" name="age"
+				value="16-29" checked> 16-29 </label><br />
+				<label><input type="radio" class="form_radio" name="age"
+				value="30-59"> 30-59 </label><br />
+				<label><input type="radio" class="form_radio" name="age"
+				value="60-79"> 60-79</label><br />
+				<label><input type="radio" class="form_radio"name="age"
+				 value="80-89"> 80-89 </label><br />
 
-		<h2>What are their hobbies?</h2>
-		<label><input type="checkbox" name="q3" value="c1">
-			Outdoor activities </label><br /> <label><input type="checkbox"
-			name="q3" value="c2"> Sports </label><br /> <label><input
-			type="checkbox" name="q3" value="c3"> Travel </label><br /> <label><input
-			type="checkbox" name="q3" value="c4"> Crafting </label><br /> <label><input
-			type="checkbox" name="q3" value="c4"> Food & Cooking </label><br />
-		<label><input type="checkbox" name="q3" value="c4">
-			Games </label><br /> <label><input type="checkbox" name="q3"
-			value="c4"> Collecting </label><br /> <label><input
-			type="checkbox" name="q3" value="c4"> Traditional arts </label><br />
-		<!-- Question 5 -->
-		<h2>What would motivate your purchase the most?</h2>
-		<!-- Choices for the fourth question -->
-		<label><input type="radio" name="q4" value="c1"> Price
-		</label><br /> <label><input type="radio" name="q4" value="c2">
-			Brand name </label><br /> <label><input type="radio" name="q4"
-			value="c3"> Shipping options </label><br /> <label><input
-			type="radio" name="q4" value="c4"> Description of the item </label><br />
-		<!-- Question 6 -->
-		<h2>How much would you like to spend on gifts?</h2>
-		<label><input type="radio" name="q5" value="c1"> Under
-			20 </label><br /> <label><input type="radio" name="q5" value="c2">
-			20-100 </label><br /> <label><input type="radio" name="q5"
-			value="c2"> 100-200 </label><br /> <label><input
-			type="radio" name="q5" value="c2"> Above 200 </label><br />
-		<!-- Question 7 -->
-		<h2>What kind of gifts would they prefer?</h2>
-		<label><input type="radio" name="q6" value="c1">
-			Electronics </label><br /> <label><input type="radio" name="q6"
-			value="c2"> Food </label><br /> <label><input type="radio"
-			name="q6" value="c2"> Book </label><br /> <label><input
-			type="radio" name="q6" value="c2"> Arts&Handmade </label><br /> <label><input
-			type="radio" name="q6" value="c2"> Outdoor&Sports </label><br /> <label><input
-			type="radio" name="q6" value="c2"> Toys&Games </label><br /> <label><input
-			type="radio" name="q6" value="c2"> Health care </label><br />
-		<!-- Question 8 -->
-		<!-- Found this question fairly useless, could be a category but not a separate question  -->
-		<!--       <h2>Indoor or outdoor gift?</h2>
+			<h2>What are their hobbies?</h2>
+			<label><input type="checkbox" name="hobbies" value="Outdoor Activities">
+				Outdoor Activities </label><br /> <label><input type="checkbox"
+				name="hobbies" value="Sports"> Sports </label><br /> <label><input
+				type="checkbox" name="hobbies" value="Travel"> Travel </label><br /> <label><input
+				type="checkbox" name="hobbies" value="Crafting"> Crafting </label><br /> <label><input
+				type="checkbox" name="hobbies" value="Food & Cooking"> Food & Cooking </label><br />
+			<label><input type="checkbox" name="hobbies" value="Games">
+				Games </label><br /> <label><input type="checkbox" name="hobbies"
+				value="Collecting"> Collecting </label><br /> <label><input
+				type="checkbox" name="hobbies" value="Traditional Arts"> Traditional Arts </label><br />
+			<!-- Question 5 -->
+			<h2>What would motivate your purchase the most?</h2>
+			<!-- Choices for the fourth question -->
+			<label><input type="radio" name="motivation" value="Price" checked>
+				Price </label><br /> <label><input type="radio" name="motivation"
+				value="Item Brand"> Item Brand </label><br /> <label><input
+				type="radio" name="motivation" value="Shipping Options"> Shipping Options </label><br />
+			<label><input type="radio" name="motivation" value="Item Descriptions">
+				Item Descriptions </label><br />
+			<!-- Question 6 -->
+			<h2>How much would you like to spend on gifts?</h2>
+			<label><input type="radio" name="pricing" value="20 and Under" checked>
+				20 and Under </label><br /> <label><input type="radio" name="pricing"
+				value="20-100"> 20-100 </label><br /> <label><input
+				type="radio" name="pricing" value="100-200"> 100-200 </label><br /> <label><input
+				type="radio" name="pricing" value="200 and Above"> 200 and Above </label><br />
+			<!-- Question 7 -->
+			<h2>What kind of gifts would they prefer?</h2>
+			<label><input type="radio" name="category" value="Electronics" checked>
+				Electronics </label><br /> <label><input type="radio" name="category"
+				value="Food"> Food </label><br /> <label><input type="radio"
+				name="category" value="Books"> Books </label><br /> <label><input
+				type="radio" name="category" value="Arts&Crafts"> Arts&Crafts </label><br /> <label><input
+				type="radio" name="category" value="Outdoors&Sports"> Outdoors&Sports </label><br /> <label><input
+				type="radio" name="category" value="Toys&Games"> Toys&Games </label><br /> <label><input
+				type="radio" name="category" value="Health&WellBeing"> Health&WellBeing </label><br />
+			<!-- Question 8 -->
+			<!-- Found this question fairly useless, could be a category but not a separate question  -->
+			<!--       <h2>Indoor or outdoor gift?</h2>
       <label><input type="radio" name="q7" value="c1">
         Indoor
       </label><br />
       <label><input type="radio" name="q7" value="c2">
         Outdoor
       </label><br /> -->
-		<!-- Question 9 -->
-		<h2>Is this a celebration of some sort?</h2>
-		<label><input type="radio" name="q8" value="c1">
-			Birthday </label><br /> <label><input type="radio" name="q8"
-			value="c2"> Valentine's day </label><br /> <label><input
-			type="radio" name="q8" value="c2"> Thanksgiving day </label><br /> <label><input
-			type="radio" name="q8" value="c2"> Christmas </label><br /> <label><input
-			type="radio" name="q8" value="c2"> Mother’s day </label><br /> <label><input
-			type="radio" name="q8" value="c2"> Father’s day </label><br /> <label><input
-			type="radio" name="q8" value="c2"> Anniversary </label><br /> <label><input
-			type="radio" name="q8" value="c2"> No Holiday </label><br />
-		<!-- Question 10 -->
-		<h2>Which website would you prefer purchasing gifts on?</h2>
-		<label><input type="radio" name="q9" value="c1">
-			Amazon </label><br /> <label><input type="radio" name="q9"
-			value="c2"> Gift.com </label><br /> <label><input
-			type="radio" name="q9" value="c2"> Ebay </label><br /> <label><input
-			type="radio" name="q9" value="c2"> Walmart </label><br />
-		<!-- Question 11 -->
-		<h2>Would you like to customize your gifts?</h2>
-		<label><input type="radio" name="q9" value="c1">
-			Customized </label><br /> <label><input type="radio" name="q9"
-			value="c2"> Non-customized </label><br />
-		<h2>How many days in advance would you like to be reminded?</h2>
-		<select name="age" id="selectAge"></select>
+			<!-- Question 9 -->
+			<h2>Is this a celebration of some sort?</h2>
+			<label><input type="radio" name="holiday" value="Birthday">
+				Birthday </label><br /> <label><input type="radio" name="holiday"
+				value="Valentine's Day"> Valentine's Day </label><br /> <label><input
+				type="radio" name="holiday" value="Thanksgiving Day"> Thanksgiving Day </label><br />
+			<label><input type="radio" name="holiday" value="Christmas">
+				Christmas </label><br /> <label><input type="radio" name="holiday"
+				value="Mother's Day"> Mother’s Day </label><br /> <label><input
+				type="radio" name="holiday" value="Father's Day"> Father’s Day </label><br /> <label><input
+				type="radio" name="holiday" value="Anniversary"> Anniversary </label><br /> <label><input
+				type="radio" name="holiday" value="No Holiday" checked> No Holiday </label><br />
+			<!-- Question 10 -->
+			<h2>Which website would you prefer purchasing gifts on?</h2>
+			<label><input type="radio" name="webPreference" value="Amazon">
+				Amazon </label><br /> <label><input type="radio" name="webPreference"
+				value="Gift.com"> Gift.com </label><br /> <label><input
+				type="radio" name="webPreference" value="Ebay" checked> Ebay </label><br /> <label><input
+				type="radio" name="webPreference" value="Walmart"> Walmart </label><br />
+			<!-- Question 11 -->
+			<h2>Would you like to customize your gifts?</h2>
+			<label><input type="radio" name="customized" value="true" checked>
+				Customized </label><br /> <label><input type="radio" name="q10"
+				value="false"> Non-customized </label><br />
+			<h2>How many days in advance would you like to be reminded?</h2>
+			<select name="daysInAdvance" id="selectDaysInAdvance"></select>
 
-		<script>
-         var selectAge = document.getElementById("selectAge");
-         var contents;
+			<script>
+				var select = document.getElementById("selectDaysInAdvance");
+				var contents;
 
-         for (let i = 1; i <= 100; i++) {
-           contents += "<option>" + i + "</option>";
-         }
+				for (let i = 1; i <= 100; i++) {
+					contents += "<option>" + i + "</option>";
+				}
 
-         selectAge.innerHTML = contents;
-      </script>
-		<button type="submit" id="submit" onclick="tabulateAnswers()">Submit
-			Your Answers</button>
-
+				select.innerHTML = contents;
+			</script>
+			<input type="submit" value="Submit your answers">
+		</form>
 	</div>
+
 </body>
 </html>

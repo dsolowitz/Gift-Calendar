@@ -74,7 +74,7 @@ label{
     display: inline-block;
 }
 
-button{
+input[type="submit"]{
     margin: 10px;
     padding: 20px;
     display: block;
@@ -89,6 +89,6 @@ button{
     transition: .5s;
 }
 
-button:hover{
+input[type="submit"]:hover{
     background-position: right;
 }

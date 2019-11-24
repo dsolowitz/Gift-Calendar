@@ -1,13 +1,20 @@
 package com.teamnorth.controllers;
 
 import com.teamnorth.data.Event;
+import com.teamnorth.data.Questionnaire;
 import com.teamnorth.data.db.hibernate.HibernateEventService;
+import com.teamnorth.data.db.hibernate.HibernateQuestionnaireService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -77,6 +84,64 @@ public class HomeController {
                 return new ModelAndView( "ebay");
             }
         }
+    
+    @RestController
+	class QuestionnaireController {
+		/*
+		 * Handles Questionnaire posting and repository changes
+		 */
+
+		@Autowired
+		HibernateQuestionnaireService qRepo;
+
+		@PostMapping(value = "/templates/questionnaire.html")
+		public @ResponseBody ModelAndView addQuestionnaire(@RequestParam Map<String, String> body) {
+			// Catches errors
+			if (body.isEmpty()) {
+				// Return user to the questionnaire if errors occur.
+				return new ModelAndView("questionnaire");
+			}
+			// Log additions
+			System.out.println(body.toString());
+			// Create Questionnaire using body data
+			// The hobbies key can potentially not exist in the map and I'm lazy so this is 'a solution'
+			String hobbies = "none";
+			// If body contains a hobbies key then gather it's data
+			if (body.containsKey("hobbies")) {
+				hobbies = body.get("hobbies");
+			}
+			Questionnaire q = new Questionnaire(
+					body.get("name"),
+					body.get("gender"),
+					body.get("age"),
+					// Hobbies can potentially be empty, look above
+					hobbies,
+					body.get("motivation"),
+					body.get("pricing"),
+					body.get("category"),
+					body.get("holiday"),
+					body.get("webPreference"),
+					body.get("customized"),
+					Integer.parseInt(body.get("daysInAdvance"))
+					);
+			// Save questionnaire POST to qRepo
+			qRepo.save(q);
+			// Return user to calendar if everything goes as planned.
+			return new ModelAndView("redirect:/templates/calendar.html");
+		}
+
+		@RequestMapping(value = "/templates/questionnaire.html", method = RequestMethod.DELETE)
+		// Delete request will attempt to delete supplied Questionnaire
+		public void removeQuestionnaire(@RequestBody Questionnaire q) {
+			qRepo.delete(q);
+		}
+
+		@RequestMapping(value = "/allquestionnaires", method = RequestMethod.GET, produces = { "application/json" })
+		// /allquestionnaires will attempt to provide a list of all questionnaires found
+		public List<Questionnaire> allQuestionnaires() {
+			return qRepo.findAll();
+		}
+	}
 }
 
 

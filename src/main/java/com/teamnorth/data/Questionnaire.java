@@ -10,6 +10,22 @@ public class Questionnaire {
 	private Questionnaire() {
 	}
 
+	public Questionnaire(String name, String gender, String age, String hobbies, String motivation, String pricing,
+			String category, String holiday, String webPreference, String customized, int daysInAdvance) {
+		super();
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.hobbies = hobbies;
+		this.motivation = motivation;
+		this.pricing = pricing;
+		this.category = category;
+		this.holiday = holiday;
+		this.webPreference = webPreference;
+		this.customized = customized;
+		this.daysInAdvance = daysInAdvance;
+	}
+	
 	public Questionnaire(Long id, String name, String gender, String age, String hobbies, String motivation, String pricing,
 			String category, String holiday, String webPreference, String customized, int daysInAdvance) {
 		super();
