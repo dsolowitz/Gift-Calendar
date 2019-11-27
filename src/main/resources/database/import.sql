@@ -1,6 +1,7 @@
 
 create table EVENT(
     ID int,
+    NAME VARCHAR(255),
     TITLE VARCHAR(255),
     START DATETIME,
     END DATETIME,

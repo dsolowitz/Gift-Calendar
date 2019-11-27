@@ -12,6 +12,8 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
+    private String name;
     @Column(name = "title")
     private String title;
     @Column(name = "description")
@@ -21,8 +23,9 @@ public class Event {
     @Column(name = "end")
     private String end;
 
-    public Event(int id, String title, String description, String start, String end) {
+    public Event(int id,String name, String title, String description, String start, String end) {
         super();
+        this.name = name;
         this.id = id;
         this.title = title;
         this.description = description;
@@ -41,6 +44,14 @@ public class Event {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTitle() {
@@ -78,7 +89,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event [id=" + id + ", title=" + title + ", description=" + description + ", start=" + start
+        return "Event [id=" + id + ", name=" + name + " title=" + title + ", description=" + description + ", start=" + start
                 + ", end=" + end + "]";
     }
 }

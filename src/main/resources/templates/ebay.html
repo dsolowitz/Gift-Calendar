@@ -14,23 +14,63 @@
 
 
 <script>
+
+//Restful service that pulls data from questionaire to then be consumed by ebay's restful api
     $.ajax({
-        url: "https://api.ebay.com/buy/browse/v1/item_summary/search?q=pokemon&limit=10",
-        type: 'GET',
-        headers:{'Authorization': 'Bearer v^1.1#i^1#p^1#f^0#r^0#I^3#t^H4sIAAAAAAAAAOVYa2wUVRTu9kUQgZAQKCBmHUDDY2bn1Z3dSXfNQltZUtqF3T6oQbg7c3c77bycO0t36yO14RGMGiMaMC0GG7AgRjSIf4waQQP8MEEQ9YcC/jGVGEMVhRiizswuZVtJQbrBJu6fzT333HPP+b5z7j1zye7yyUu2rtx6ZaprUvGebrK72OWippCTy8uWTispnltWROYpuPZ0L+wu7SkZrEJAkXV+LUS6piLoTiuyinhHGMBShsprAEmIV4ECEW8KfDS0uo6nCZLXDc3UBE3G3OHqAMZ4Rc5HJXzAR1OVAAqWVL1uM6YFMOiFCYb1UYxA+QRWBNY8QikYVpEJVDOA0STlxykKp+kYSfEsx5McUellWzF3EzSQpKmWCkFiQcdd3llr5Pk6tqsAIWiYlhEsGA7VRhtC4eqa+liVJ89WMIdD1ARmCo0crdBE6G4CcgqOvQ1ytPloShAgQpgnmN1hpFE+dN2ZO3DfgRpUQgEwfpbhgGCB7i0IlLWaoQBzbD9siSTiCUeVh6opmZlbIWqhEW+Hgpkb1VsmwtVu+29NCshSQoJGAKtZHloXikSwYDXYJIlIk/EYBEq9Zph4ZG01TrMkR/viXj/OiRzlYxhfbqOstRzMo3ZaoamiZIOG3PWauRxaXsPR2DB52FhKDWqDEUqYtkf5eswwhnSrTWqWxZTZptq8QsUCwu0Mb83A8GrTNKR4yoTDFkZPOBBZXOu6JGKjJ51czKVPGgWwNtPUeY+ns7OT6GQIzUh6aJKkPC2r66JCG1SsYksrdq1n9aVbL8AlJxQBWiuRxJsZ3fIlbeWq5YCaxIIsyXA0mcN9pFvB0dJ/CPJi9oysiEJVCIwLIM5xJEeSXoZhClEgwVyOemw3YBxkcAUYHdDUZSBAXLDSLKVAQxJ5pjJBM74ExEWvP4Gz/kQCj1eKXpxKQEhCGI8Lft//qU5uN9OjUDCgWZBUL1iap71pmQYtm1qTq2o6G2uZRMaQHq9vrmzysV1rSKBmYpk1SaWjpU5tDNxuMdw8eEHTYUSTJSFTCATsWi8cCowhRoBhZqJQli3BuAJFdqATi2R7PbIMAF0i7MImBE3xaMA60G3RBsfjccUc0vWwoqRMEJdhuDCH+X90kN80PMlqdSZUTBZ/WSIlMdujEA6bBNokEAZEWsqw2jOiwb6yY1oHVK0T0DQ0WYZGEzVuou86v3atj43Hv7ws7iz2wjUqEym3BVmyUmjDRIvsrjAqgQl2G1OVHMv4OJrmxhXXCofTWGai3UMrNWRCcczQSmvvrKv2jPzGDxY5P6rHdYTscb1b7HKRHnIRtYB8oLyksbTk3rlIMiEhgQSBpKRqfboakOiAGR1IRnG5S3rp9Lazea8Ke9aTFcPvCpNLqCl5jwzkfTdmyqjps6dSfoqiraaRtZrzVnLBjdlSalbpzBrhp8U9z3T1DvVu/uXLaz9Urf8+/iw5dVjJ5SorKu1xFcmfvHqt4s3m3Sf1QOjM0mODiz7wvtg/u+ix9sXwveDzk/xbTnw6EGfRwJkDf53/U9p/8P6dy+bs/LGh9aljfdP1cxeS6w49ubGXgs3+VV9XzZsxePmFp3d11G3+dVcF27/9t6tlV4dmt65u9L116OiFYEvX3ge/m3Gu9+T219eeHyrW1jcf77u08v35v7fsrD5xtml5xcJv91cEDq/6fOnAw/NP9J37+I0l2w5vPJhRe6a8tq9x31lcnraj/ehDFy/Gtp7qevm5/h012wLf9PV/MdM98NWld06ze/cmi7bcE7n889C8ma+Qbx8o343a6HnpZe0bVO5YyR9bPvysa84jsaEnPMpHMDJ46visR0NXjmTp+xucXzW67xEAAA=='},
-        dataType: "json",
-        success: function(data) {
-            $.each(data.itemSummaries, function(index, item) {
-                $('#ItemBody').append($("<tr>")
-                    .append($("<td>").append(item.title))
-                    .append($("<td>").append(item.image.imageUrl))
-                    .append($("<td>").append(item.price.value))
-                    .append($("<td>").append(item.itemHref)));
+        url: "/giftidea",
+        type: "GET",
+        dataType: "text",
+        success: function (data) {
 
-            });
-        }
-
+            getGift(data)
+        },
     })
+
+
+       /*  var encodedUrl = encodeURIComponent('https://auth.ebay.com/oauth2/authorize?client_id=Davidsol-TeamNort-PRD-240728b69-7d718338&response_type=code&redirect_uri=David_solowitz-Davidsol-TeamNo-nmhzdz&scope=https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/sell.marketing.readonly https://api.ebay.com/oauth/api_scope/sell.marketing https://api.ebay.com/oauth/api_scope/sell.inventory.readonly https://api.ebay.com/oauth/api_scope/sell.inventory https://api.ebay.com/oauth/api_scope/sell.account.readonly https://api.ebay.com/oauth/api_scope/sell.account https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly https://api.ebay.com/oauth/api_scope/sell.fulfillment https://api.ebay.com/oauth/api_scope/sell.analytics.readonly https://api.ebay.com/oauth/api_scope/sell.finances https://api.ebay.com/oauth/api_scope/sell.payment.dispute https://api.ebay.com/oauth/api_scope/commerce.identity.readonly');
+         var token = "";
+         var payload = {
+             'grant_type':'client_credentials',
+             'scope' : encodedUrl.toString(),
+         }
+        $.ajax({
+        url: "https://cors-anywhere.herokuapp.com/"+"https://api.ebay.com/identity/v1/oauth2/token",
+        type: 'POST',
+        headers: {'Content-Type' : 'application/x-www-form-urlencoded', 'Authorization' : 'Basic <Davidsol-TeamNort-PRD-240728b69-7d718338>:<PRD-40728b69ad81-5d36-4fd9-9429-616b>', 'Access-Control-Allow-Credentials' : 'true', 'Access-Control-Allow-Methods' : 'GET,HEAD,OPTIONS,POST,PUT', 'Access-Control-Allow-Headers' : 'Origin, X-Requested-With, Content-Type, Accept, Authorization'},
+
+        data: {
+            payload
+        },
+        success: function(data){
+           token = data.access_token
+        }
+    })*/
+
+//Restful api call to ebay's search function. For now we have one use user Oauth tokens that need to
+// be manually entered. We don't have a sellers profile that has been vetted by ebay which makes
+// creating an application oauth token difficult if not impossible. The commented out code above
+// works with an application token that doesn't not need to be manually entered every 2 hours for use.
+
+        function getGift(ebayParams)
+    {
+        $.ajax({
+            url: "https://api.ebay.com/buy/browse/v1/item_summary/search?q=" + ebayParams + "&limit=10",
+            type: 'GET',
+            headers: {'Authorization': 'Bearer v^1.1#i^1#f^0#r^0#p^3#I^3#t^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'},
+            dataType: "json",
+            success: function (data) {
+                $.each(data.itemSummaries, function (index, item) {
+                    $('#ItemBody').append($("<tr>")
+                        .append($("<td>").append(item.title))
+                        .append($("<td>").append(item.image.imageUrl))
+                        .append($("<td>").append(item.price.value))
+                        .append($("<td>").append(item.itemHref)));
+                });
+            }
+        })
+    }
+
+
 </script>
 <table id = "ebayItems">
     <thead>

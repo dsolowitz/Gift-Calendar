@@ -1,18 +1,30 @@
 package com.teamnorth.controllers;
 
+import com.ebay.api.client.auth.oauth2.CredentialUtil;
+import com.ebay.api.client.auth.oauth2.OAuth2Api;
+import com.ebay.api.client.auth.oauth2.model.AccessToken;
+import com.ebay.api.client.auth.oauth2.model.Environment;
+import com.ebay.api.client.auth.oauth2.model.OAuthResponse;
 import com.teamnorth.data.Event;
 import com.teamnorth.data.Questionnaire;
 import com.teamnorth.data.db.hibernate.HibernateEventService;
 import com.teamnorth.data.db.hibernate.HibernateQuestionnaireService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -58,6 +70,10 @@ public class HomeController {
             @Autowired
             HibernateEventService eventRepository;
 
+
+
+
+
             @PostMapping(value = "/event")
             public @ResponseBody  void addEvent(@RequestBody Event event) {
                 System.out.println(event.toString());
@@ -79,8 +95,10 @@ public class HomeController {
             }
 
 
+
             @RequestMapping(value = "/templates/ebay.html", method = RequestMethod.GET)
-            public ModelAndView ebayPage(){
+            public ModelAndView ebayPage() throws IOException {
+
                 return new ModelAndView( "ebay");
             }
         }
@@ -141,6 +159,11 @@ public class HomeController {
 		public List<Questionnaire> allQuestionnaires() {
 			return qRepo.findAll();
 		}
+
+        @RequestMapping(value = "/giftidea" , method = RequestMethod.GET)
+        public String giftIdea(){
+            return qRepo.findByParams();
+        }
 	}
 }
 
