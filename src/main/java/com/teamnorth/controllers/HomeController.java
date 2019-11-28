@@ -113,27 +113,35 @@ public class HomeController {
 		HibernateQuestionnaireService qRepo;
 
 		@PostMapping(value = "/templates/questionnaire.html")
-		public @ResponseBody ModelAndView addQuestionnaire(@RequestParam Map<String, String> body) {
+		public @ResponseBody ModelAndView addQuestionnaire(@RequestParam Map<String, String> body, @RequestParam(name = "hobbies") String [] hobby) {
 			// Catches errors
+
 			if (body.isEmpty()) {
 				// Return user to the questionnaire if errors occur.
 				return new ModelAndView("questionnaire");
 			}
 			// Log additions
-			System.out.println(body.toString());
 			// Create Questionnaire using body data
 			// The hobbies key can potentially not exist in the map and I'm lazy so this is 'a solution'
-			String hobbies = "none";
+            String hobbies = null;
+            if (hobby.length == 0) {
+                hobbies = "none";
+            }
 			// If body contains a hobbies key then gather it's data
-			if (body.containsKey("hobbies")) {
-				hobbies = body.get("hobbies");
+			if (hobby.length > 0) {
+			    hobbies = "";
+                for (int x = 0; x < hobby.length; x++){
+                     hobbies += hobby[x] + " ";
+                }
 			}
+            String hobbies1 = hobbies.replaceAll("&", "").replaceAll("  ", " ");
+            System.out.println(hobbies1);
 			Questionnaire q = new Questionnaire(
 					body.get("name"),
 					body.get("gender"),
 					body.get("age"),
 					// Hobbies can potentially be empty, look above
-					hobbies,
+					hobbies1,
 					body.get("motivation"),
 					body.get("pricing"),
 					body.get("category"),

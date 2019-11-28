@@ -34,6 +34,9 @@ public class HibernateEventService  {
 		return Optional.empty();
 	}
 
+	public String findByName(){
+		return "";
+	}
 
 	public boolean existsById(Long aLong) {
 		return false;
