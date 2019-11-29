@@ -34,8 +34,15 @@ public class HibernateEventService  {
 		return Optional.empty();
 	}
 
-	public String findByName(){
-		return "";
+	public Event findByName(String name){
+		Event foundEvent = null;
+		List<Event> events = (List<Event>) repo.findAll();
+			for(Event event : events){
+				if(event.getName()== name){
+					foundEvent = event;
+				}
+			}
+			return foundEvent;
 	}
 
 	public boolean existsById(Long aLong) {
@@ -87,11 +94,6 @@ public class HibernateEventService  {
 	public List<Event> findByDatesBetween(Date start, Date end) {
 		return null;
 	}
-
-
-
-
-
 
 
 }

@@ -25,8 +25,15 @@ public class HibernateQuestionnaireService {
 		return entities;
 	}
 	
-	public Optional<Questionnaire> findById(Long aLong) {
-		return Optional.empty();
+	public Questionnaire findByName(String name) {
+		Questionnaire matched = null;
+		List<Questionnaire> qList = (List<Questionnaire>) repo.findAll();
+		for (Questionnaire person : qList) {
+			if (person.getName().equals(name)) {
+				matched = person;
+			}
+		}
+		return matched;
 	}
 	
 	public boolean existsById(Long aLong) {
@@ -38,9 +45,11 @@ public class HibernateQuestionnaireService {
 		return qList;
 	}
 
-	public String findByParams(){
-		List<Questionnaire> qList = (List<Questionnaire>) repo.findAll();
-		Questionnaire form = qList.get(0);
+
+
+	public String findByParams(Questionnaire form){
+		//List<Questionnaire> qList = (List<Questionnaire>) repo.findAll();
+		//Questionnaire form = findByName(name);
 		String ideaList = form.getCategory() + " " + form.getHobbies(); //+ " " + form.getHoliday().replace("'","").replace(" ","") ;
 		/*String[] ideas = new String[]{form.getHobbies(),form.getCategory(),form.getHoliday(),form.getGender()};
 		List<String> ideaList = Arrays.asList(ideas);*/

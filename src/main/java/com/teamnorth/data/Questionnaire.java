@@ -51,7 +51,8 @@ public class Questionnaire {
 //	@OneToOne
 //	@JoinColumn(name = "users")
 //	private User user;
-	
+
+
 	@Column
 	private String name;
 
@@ -116,6 +117,14 @@ public class Questionnaire {
 	public void setHobbies(String hobbies) {
 		this.hobbies = hobbies;
 	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 	public String getMotivation() {
 		return motivation;
