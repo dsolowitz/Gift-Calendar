@@ -1,5 +1,4 @@
-# team-north-capstone
-This is the repository we will use for our team's programming and collaboration.
+# Gifting Calendar
 
 # Build setup
   Zip:
